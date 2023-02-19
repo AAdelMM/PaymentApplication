@@ -1,13 +1,6 @@
-﻿  main.c
-  terminal.c
+﻿  terminal.c
 G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(9,5): warning C4013: 'gets' undefined; assuming extern returning int
 G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(10,14): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(66,43): warning C4047: 'function': 'char *' differs in levels of indirection from 'int'
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(66,32): warning C4024: 'strcat': different types for formal and actual parameter 1
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(66,15): error C2198: 'strcat': too few arguments for call
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(66,5): error C2106: '=': left operand must be l-value
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(68,36): warning C4047: '=': 'uint8_t [3]' differs in levels of indirection from 'int'
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(68,5): error C2106: '=': left operand must be l-value
 G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(110,33): warning C4047: 'function': 'ST_terminalData_t *' differs in levels of indirection from 'ST_terminalData_t **'
 G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(110,24): warning C4024: 'getTransactionDate': different types for formal and actual parameter 1
-  Generating Code...
+  PaymentApplication.vcxproj -> G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\x64\Debug\PaymentApplication.exe

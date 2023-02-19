@@ -62,10 +62,10 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
     //copy card date and transaction date in to new variables
     strcpy(termData->transactionDate, T_date);
     strcpy(cardData->cardExpirationDate, date);
-    printf("first date %s  second date %s",date, T_date);
-    yT_date = strcat(T_date[8] + T_date[9]);
+   // printf("first date %s  second date %s",date, T_date);
+    //yT_date = strcat(T_date[8] + T_date[9]);
     
-    mT_date = T_date[3] + T_date[4];
+   // mT_date = T_date[3] + T_date[4];
     printf(">>>> %s >>>>> %s", yT_date, mT_date);
     //get current date
 
