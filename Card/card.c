@@ -3,12 +3,13 @@
 #define _NO_CRT_STDIO_INLINE
 #include "card.h"
 
+ST_cardData_t userCard;
+ST_cardData_t* userCardPointer = &userCard;
+
 
 //getting card holder name
 EN_cardError_t getCardHolderName(ST_cardData_t* cardData)
 {
-	//uint8_t name[25] = { 0 };
-	//uint8_t name[25];
 	printf("Please enter your name as shown in your card \nName: ");
 	gets(name);
 	
@@ -20,7 +21,6 @@ EN_cardError_t getCardHolderName(ST_cardData_t* cardData)
 	}
 	else {
 		errorCases = CARD_OK;
-		printf("\n\tBefore");
 		strcpy(cardData->cardHolderName,name );
 		printf("\n\t%s",cardData->cardHolderName);
 		

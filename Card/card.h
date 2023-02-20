@@ -3,10 +3,12 @@
 
 #include <stdio.h>
 #include <string.h>
-//#include <stdlib.h>
+#include <stdlib.h>
 
-typedef unsigned char uint8_t;//new
-uint8_t name[25];            //new variable
+typedef unsigned char uint8_t;
+typedef unsigned int uint32_t;
+typedef unsigned int uint16_t;
+uint8_t name[25];            
 int length;
 char date[20];
 char actr[20];
@@ -37,6 +39,8 @@ ST_cardData_t* cardData;
 
 //*******note ********
 //create new pointer to pass inside function
+
+extern ST_cardData_t* userCardPointer;
 #endif // !CARD_H
 
 

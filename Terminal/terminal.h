@@ -1,6 +1,6 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
-#pragma warning(disable : 4996)
+
 #include "../Card/card.h"
 
 uint8_t T_date[11];
@@ -29,7 +29,8 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
 EN_terminalError_t getTransactionAmount(ST_terminalData_t* termData);
 EN_terminalError_t isBelowMaxAmount(ST_terminalData_t* termData);
 EN_terminalError_t setMaxAmount(ST_terminalData_t* termData, float maxAmount);
-EN_terminalError_t isValidCardPAN(ST_cardData_t* cardData); // Optional
 
+
+ST_terminalData_t* terminalPointer;
 
 #endif // !TERMINAL_H

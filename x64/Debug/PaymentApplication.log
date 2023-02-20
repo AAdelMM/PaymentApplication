@@ -1,6 +1,18 @@
-﻿  terminal.c
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(9,5): warning C4013: 'gets' undefined; assuming extern returning int
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(10,14): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(110,33): warning C4047: 'function': 'ST_terminalData_t *' differs in levels of indirection from 'ST_terminalData_t **'
-G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(110,24): warning C4024: 'getTransactionDate': different types for formal and actual parameter 1
+﻿  app.c
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Application\app.c(10,29): warning C4047: 'function': 'ST_cardData_t *' differs in levels of indirection from 'ST_cardData_t **'
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Application\app.c(10,20): warning C4024: 'getCardExpiryDate': different types for formal and actual parameter 1
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Application\app.c(16,30): warning C4047: 'function': 'ST_terminalData_t *' differs in levels of indirection from 'ST_terminalData_t **'
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Application\app.c(16,21): warning C4024: 'getTransactionDate': different types for formal and actual parameter 1
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Application\app.c(19,25): warning C4047: 'function': 'ST_cardData_t *' differs in levels of indirection from 'ST_cardData_t **'
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Application\app.c(19,16): warning C4024: 'isCardExpired': different types for formal and actual parameter 1
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Application\app.c(19,36): warning C4047: 'function': 'ST_terminalData_t *' differs in levels of indirection from 'ST_terminalData_t **'
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Application\app.c(19,27): warning C4024: 'isCardExpired': different types for formal and actual parameter 2
+  server.c
+  terminal.c
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(11,5): warning C4013: 'gets' undefined; assuming extern returning int
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(12,14): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(176,33): warning C4047: 'function': 'ST_terminalData_t *' differs in levels of indirection from 'ST_terminalData_t **'
+G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\Terminal\terminal.c(176,24): warning C4024: 'getTransactionDate': different types for formal and actual parameter 1
+  main.c
+  Generating Code...
   PaymentApplication.vcxproj -> G:\PROGRAMMING\CProgramming\Udacity project\Udacity project1\PaymentApplication\x64\Debug\PaymentApplication.exe
