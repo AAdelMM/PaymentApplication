@@ -59,7 +59,7 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t* termData)
 
 EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* termData)
 {
-    EN_terminalError_t expired_card_error_type = 0;
+    terminalErrors = 0;
     uint8_t mm_trans[3] = { 0 };
     uint8_t yy_trans[3] = { 0 };
     uint8_t mm_exp[3] = { 0 };
@@ -91,21 +91,21 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
 
     if (yy_trans_number > yy_exp_number)
     {
-        expired_card_error_type = EXPIRED_CARD;
+        terminalErrors = EXPIRED_CARD;
     }
     else if (yy_trans_number < yy_exp_number)
     {
-        expired_card_error_type = TERMINAL_OK;
+        terminalErrors = TERMINAL_OK;
     }
     else if (yy_trans_number == yy_exp_number)
     {
         if (mm_trans_number <= mm_exp_number)
         {
-            expired_card_error_type = TERMINAL_OK;
+            terminalErrors = TERMINAL_OK;
         }
         else if (mm_trans_number > mm_exp_number)
         {
-            expired_card_error_type = EXPIRED_CARD;
+            terminalErrors = EXPIRED_CARD;
         }
     }
 
@@ -114,20 +114,20 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
 
 EN_terminalError_t getTransactionAmount(ST_terminalData_t* termData)
 {
-    EN_terminalError_t trans_amount_error_type = 0; // OK or INVALID_AMOUNT
+    terminalErrors = 0;
     float trans_amount = 0.0;
 
     printf("Enter Transaction Amount : ");
-    //printf("\n");
+    
     scanf_s("%f", &trans_amount);
 
     if (trans_amount <= 0.0)
     {
-        trans_amount_error_type = INVALID_AMOUNT;
+        terminalErrors = INVALID_AMOUNT;
     }
     else
     {
-        trans_amount_error_type = TERMINAL_OK;
+        terminalErrors = TERMINAL_OK;
         termData->transAmount = trans_amount;
     }
     return terminalErrors;
@@ -135,31 +135,31 @@ EN_terminalError_t getTransactionAmount(ST_terminalData_t* termData)
 
 EN_terminalError_t isBelowMaxAmount(ST_terminalData_t* termData)
 {
-    EN_terminalError_t below_max_amout_error_type = 0; // OK or EXCEED_MAX_AMOUNT
+    terminalErrors = 0; 
 
     if (termData->transAmount > termData->maxTransAmount)
     {
-        below_max_amout_error_type = EXCEED_MAX_AMOUNT;
+        terminalErrors = EXCEED_MAX_AMOUNT;
     }
     else
     {
-        below_max_amout_error_type = TERMINAL_OK;
+        terminalErrors = TERMINAL_OK;
     }
-    return below_max_amout_error_type;
+    
     return terminalErrors;
 }
 
 EN_terminalError_t setMaxAmount(ST_terminalData_t* termData, float maxAmount)
 {
-    EN_terminalError_t max_amount_error_type = 0;
+    terminalErrors = 0;
 
     if (maxAmount <= 0.0)
     {
-        max_amount_error_type = INVALID_MAX_AMOUNT;
+        terminalErrors = INVALID_MAX_AMOUNT;
     }
     else
     {
-        max_amount_error_type = TERMINAL_OK;
+        terminalErrors = TERMINAL_OK;
         termData->maxTransAmount = maxAmount;
     }
     return terminalErrors;
@@ -167,7 +167,7 @@ EN_terminalError_t setMaxAmount(ST_terminalData_t* termData, float maxAmount)
 
 
 //******************************************************
-//************Transaction date Test Function************
+//************Transaction Test Functions************
 //******************************************************
 
 void getTransactionDateTest(void)
@@ -183,7 +183,7 @@ void getTransactionDateTest(void)
     printf("Actual Result: %s\n", actr);
 
     //test case 2 null date
-    getTransactionDate(termData);
+    getTransactionDate(&termData);
     printf("Tester Name: Ahmed Adel\n");
     printf("Test Case 2: Null\n");
     printf("Input Data: %s\n", date);
@@ -193,12 +193,104 @@ void getTransactionDateTest(void)
     printf("Actual Result: %s\n", actr);
 
     //test case 3 wrong format
-    getTransactionDate(termData);
+    getTransactionDate(&termData);
     printf("Tester Name: Ahmed Adel\n");
     printf("Test Case 3: Wrong Format\n");
     printf("Input Data: %s\n", date);
     printf("Expected Result: DATE WRONG\n");
     if (terminalErrors == 0) { strcpy(actr, "DATE OK"); }
     else { strcpy(actr, "DATE WRONG"); }
+    printf("Actual Result: %s\n", actr);
+}
+
+void isCardExpiredTest(void)
+{
+    //test case1 valid card
+    isCardExpired(&cardData, &termData);
+    printf("Tester Name: Ahmed Adel\n");
+    printf("Test Case 1: valid card\n");
+    printf("Input Data: %s\n", date);
+    printf("Expected Result: TERMINAL_OK\n");
+    if (terminalErrors == 0) { strcpy(actr, "TERMINAL_OK"); }
+    else { strcpy(actr, "EXPIRED_CARD"); }
+    printf("Actual Result: %s\n", actr);
+
+    //test case2 expiry card
+    isCardExpired(&cardData, &termData);
+    printf("Tester Name: Ahmed Adel\n");
+    printf("Test Case 1: expired card\n");
+    printf("Input Data: %s\n", date);
+    printf("Expected Result: EXPIRED_CARD\n");
+    if (terminalErrors == 0) { strcpy(actr, "TERMINAL_OK"); }
+    else { strcpy(actr, "EXPIRED_CARD"); }
+    printf("Actual Result: %s\n", actr);
+}
+
+void getTransactionAmountTest(void)
+{
+    //test case1 valid amount
+    getTransactionAmount(&termData);
+    printf("Tester Name: Ahmed Adel\n");
+    printf("Test Case 1: valid amount\n");
+    printf("Input Data: %s\n", date);
+    printf("Expected Result: TERMINAL_OK\n");
+    if (terminalErrors == 0) { strcpy(actr, "TERMINAL_OK"); }
+    else { strcpy(actr, "INVALIDID_AMOUNT"); }
+    printf("Actual Result: %s\n", actr);
+
+    //test case2 invalid amount
+    getTransactionAmount(&termData);
+    printf("Tester Name: Ahmed Adel\n");
+    printf("Test Case 1: invalid amount\n");
+    printf("Input Data: %s\n", date);
+    printf("Expected Result: INValIDID_AMOUNT\n");
+    if (terminalErrors == 0) { strcpy(actr, "TERMINAL_OK"); }
+    else { strcpy(actr, "INVALIDID_AMOUNT"); }
+    printf("Actual Result: %s\n", actr);
+}
+
+void isBelowMaxAmountTest(void)
+{
+    //test case1 acceptable amount
+    isBelowMaxAmount(&termData);
+    printf("Tester Name: Ahmed Adel\n");
+    printf("Test Case 1: acceptable amount\n");
+    printf("Input Data: %s\n", date);
+    printf("Expected Result: TERMINAL_OK\n");
+    if (terminalErrors == 0) { strcpy(actr, "TERMINAL_OK"); }
+    else { strcpy(actr, "EXCEED_MAX_AMOUNT"); }
+    printf("Actual Result: %s\n", actr);
+
+    //test case2 exceed max amount
+    isBelowMaxAmount(&termData);
+    printf("Tester Name: Ahmed Adel\n");
+    printf("Test Case 1: exceed amount\n");
+    printf("Input Data: %s\n", date);
+    printf("Expected Result: EXCEED_MAX_AMOUNT\n");
+    if (terminalErrors == 0) { strcpy(actr, "TERMINAL_OK"); }
+    else { strcpy(actr, "EXCEED_MAX_AMOUNT"); }
+    printf("Actual Result: %s\n", actr);
+}
+
+void setMaxAmountTest(void)
+{
+    //test case1 valid amount
+    setMaxAmount(&termData,termData->maxTransAmount);
+    printf("Tester Name: Ahmed Adel\n");
+    printf("Test Case 1: valid amount\n");
+    printf("Input Data: %s\n", date);
+    printf("Expected Result: TERMINAL_OK\n");
+    if (terminalErrors == 0) { strcpy(actr, "TERMINAL_OK"); }
+    else { strcpy(actr, "INVALID_MAX_AMOUNT"); }
+    printf("Actual Result: %s\n", actr);
+
+    //test case2 invalid max amount
+    setMaxAmount(&termData, termData->maxTransAmount);
+    printf("Tester Name: Ahmed Adel\n");
+    printf("Test Case 1: invalid amount\n");
+    printf("Input Data: %s\n", date);
+    printf("Expected Result: INVALID_MAX_AMOUNT\n");
+    if (terminalErrors == 0) { strcpy(actr, "TERMINAL_OK"); }
+    else { strcpy(actr, "INVALID_MAX_AMOUNT"); }
     printf("Actual Result: %s\n", actr);
 }

@@ -41,7 +41,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t* transData)
 
 	account_validity = isValidAccount(userCardPointer, accountsDBptr);
 	account_state = isBlockedAccount(valid_account_ptr);
-	amount_availability = isAmountAvailable(terminalPointer, valid_account_ptr); 
+	amount_availability = isAmountAvailable(terminalPointer, valid_account_ptr);
 
 	if (account_validity == ACCOUNT_NOT_FOUND)
 	{
@@ -73,7 +73,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t* transData)
 	}
 
 	return trans_error_type;
-}
+};
 
 EN_serverError_t isValidAccount(ST_cardData_t* cardData, ST_accountsDB_t* accountRefrence)
 {
@@ -212,4 +212,124 @@ void listSavedTransactions(void)
 	printf("\n");
 	printf("#########################");
 	printf("\n");
+}
+
+
+//******************************************************
+//************Transaction Test Functions************
+//******************************************************
+
+void recieveTransactionDataTest(void)
+{
+	//test case1 approved
+	recieveTransactionData(&transData);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 1: approved\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: APPROVED\n");
+	if (terminalErrors == 0) { strcpy(actr, "APPROVED"); }
+	else { strcpy(actr, "INTERNAL_SERVER_ERROR"); }
+	printf("Actual Result: %s\n", actr);
+
+	//test case2 fraud card
+	recieveTransactionData(&transData);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 2: fraud card\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: FRAUD_CARD\n");
+	if (terminalErrors == 0) { strcpy(actr, "APPROVED"); }
+	else { strcpy(actr, "FRAUD_CARD"); }
+	printf("Actual Result: %s\n", actr);
+}
+
+void isValidAccountTest(void)
+{
+	//test case1 server ok 
+	isValidAccount(&cardData, &accountRefrence);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 1: server ok\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: SERVER_OK\n");
+	if (terminalErrors == 0) { strcpy(actr, "SERVER_OK"); }
+	else { strcpy(actr, "ACCOUNT_NOT_FOUND"); }
+	printf("Actual Result: %s\n", actr);
+
+	//test case2 account not found 
+	isValidAccount(&cardData, &accountRefrence);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 2: account not found\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: account not found\n");
+	if (terminalErrors == 0) { strcpy(actr, "SERVER_OK"); }
+	else { strcpy(actr, "ACCOUNT_NOT_FOUND"); }
+	printf("Actual Result: %s\n", actr);
+}
+
+void isBlockedAccountTest(void)
+{
+	//test case1 server ok
+	isBlockedAccount(&accountRefrence);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 1: server ok\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: SERVER_OK\n");
+	if (terminalErrors == 0) { strcpy(actr, "SERVER_OK"); }
+	else { strcpy(actr, "BLOCKED_ACCOUNT"); }
+	printf("Actual Result: %s\n", actr);
+
+	//test case2 blocked account
+	isBlockedAccount(&accountRefrence);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 2: blocked account\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: SERVER_OK\n");
+	if (terminalErrors == 0) { strcpy(actr, "SERVER_OK"); }
+	else { strcpy(actr, "BLOCKED_ACCOUNT"); }
+	printf("Actual Result: %s\n", actr);
+}
+
+void isAmountAvailableTest(void)
+{
+	//test case1 server ok
+	isAmountAvailable(&termData, &accountRefrence);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 1: server ok\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: SERVER_OK\n");
+	if (terminalErrors == 0) { strcpy(actr, "SERVER_OK"); }
+	else { strcpy(actr, "LOW_BALANCE"); }
+	printf("Actual Result: %s\n", actr);
+
+	//test case2 low balance
+	isAmountAvailable(&termData, &accountRefrence);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 2: low balance\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: LOW_BALANCE\n");
+	if (terminalErrors == 0) { strcpy(actr, "SERVER_OK"); }
+	else { strcpy(actr, "LOW_BALANCE"); }
+	printf("Actual Result: %s\n", actr);
+}
+
+void saveTransactionTest(void)
+{
+	//test case1 approved
+	saveTransaction(&transData);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 1: approved\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: APPROVED\n");
+	if (terminalErrors == 0) { strcpy(actr, "APPROVED"); }
+	else { strcpy(actr, "INTERNAL_SERVER_ERROR"); }
+	printf("Actual Result: %s\n", actr);
+
+	//test case2 Fraud card
+	saveTransaction(&transData);
+	printf("Tester Name: Ahmed Adel\n");
+	printf("Test Case 1: fraud card\n");
+	printf("Input Data: %s\n", date);
+	printf("Expected Result: FRAUD_CARD\n");
+	if (terminalErrors == 0) { strcpy(actr, "SERVER_OK"); }
+	else { strcpy(actr, "FRAUD_CARD"); }
+	printf("Actual Result: %s\n", actr);
 }
